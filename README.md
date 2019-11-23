@@ -1,1 +1,2 @@
-# proyecto-arenita
+# Práctica convolución discreta
+# Proyecto operaciones básicas

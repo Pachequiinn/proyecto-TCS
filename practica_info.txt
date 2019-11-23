@@ -1,4 +1,4 @@
-Practica convolución discreta
+Práctica convolución discreta
 
 Implementar el algoritmo de convolución discreta
 aplicada a dos secuencias introducidas por el usuario
@@ -7,4 +7,4 @@ de acuerdo al siguiente menú
 1) Convolución finita
 2) Convoluión periódica
 3) Convolución circular
-4) Gráficas de entrada/salida
+4) Gráficas de Entrada/Salida
