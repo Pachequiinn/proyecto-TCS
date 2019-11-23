@@ -1,0 +1,53 @@
+#:kivy 1.9.2
+#:import KivyLexer kivy.extras.highlight.KivyLexer
+#:import Factory kivy.factory.Factory
+
+<FramePrincipal>:
+	orientation: 'vertical'
+	canvas:
+		Color:
+			rgb: 0,0,0
+		Rectangle:
+			size: self.size
+			pos: self.pos
+
+<ContainerAction>:
+	orientation: 'vertical'
+	size_hint: 1,.5
+	canvas:
+		Color:
+			rgb: 0,0,0
+		Rectangle:
+			size: self.size
+			pos: self.pos
+<ContainerEntradas>:
+	orientation: 'vertical'
+	size_hint: 1,.2
+	canvas:
+		Color:
+			rgb: 1,1,1
+		Rectangle:
+			size: self.size
+			pos: self.pos
+<ContainerButtons>:
+	orientation: 'vertical'
+	size_hint: 1,.3
+	padding: [30,0,30,30]
+	canvas:
+		Color:
+			rgb: .6,.6,.6
+	# canvas.before:
+		Rectangle:
+			size: self.size
+			pos: self.pos
+			source: 'assets/background.png'
+
+<ConvolucionFinita>:
+	# padding: [L,T,R,D]
+	padding: [10,10,10,0]
+
+<ConvolucionPeriodica>:
+	padding: [10,10,10,0]
+
+<ConvolucionCircular>:
+	padding: [10,10,10,0]
