@@ -1,7 +1,10 @@
 # -*- coding:utf-8 -*-
 
 import numpy
+import matplotlib.pyplot as plt
 import sys
+
+from graficar import graficar
 
 
 # signal_h = input("Ingresa h(x): ")
@@ -97,3 +100,5 @@ else:
 # print(matriz_b)
 print(matriz_r)
 print("Con origen en la posición: "+str(position_origin_final) + "con dato: " + str(matriz_r[position_origin_final-1,0]))
+
+graficar(matriz_r, position_origin_final)
