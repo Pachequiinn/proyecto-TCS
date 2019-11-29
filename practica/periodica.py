@@ -89,8 +89,40 @@ def convolucion_periodica(sh,osh,sg,osg):
 				for k in range(0,tam_matriz):
 					matriz_r[r,c] += matriz_b[r,k] *  matriz_a[k,c]
 		print("g(x)*h(x)= ")
+	#print(matriz_r)
 
-	print(matriz_r)
-	print("Con origen en la posición: "+str(position_origin_final) + "con dato: " + str(matriz_r[position_origin_final-1,0]))
+	#Matriz de periodicidad
+	if tam_matriz%2 == 0:	#par
+		tam_matrizF = int(tam_matriz/2)
+		matriz_rF1 = numpy.zeros((tam_matrizF,1))
+		for r in range(0, tam_matrizF):
+			for c in range(0, 1):
+				matriz_rF1[r, c] = matriz_r[r, c]	
+		matriz_rF2 = numpy.zeros((tam_matrizF,1))
+		for r in range(0, tam_matrizF):
+			for c in range(0, 1):
+				matriz_rF2[r, c] = matriz_r[r + tam_matrizF, c]
+		matriz_rF = numpy.zeros((tam_matrizF,1))
+		for r in range(0, tam_matrizF):
+			for c in range(0, 1):
+				matriz_rF[r, c] = matriz_rF1[r, c] + matriz_rF2[r, c]
+		print(matriz_rF)
+	else:
+		tam_matrizF = int((tam_matriz+1)/2)
+		matriz_rF1 = numpy.zeros((tam_matrizF,1))
+		for r in range(0, tam_matrizF):
+			for c in range(0, 1):
+				matriz_rF1[r, c] = matriz_r[r, c]
+		matriz_rF2 = numpy.zeros((tam_matrizF,1))
+		for r in range(0, tam_matrizF-1):
+			for c in range(0, 1):
+				matriz_rF2[r, c] = matriz_r[r + tam_matrizF, c]
+		matriz_rF = numpy.zeros((tam_matrizF,1))
+		for r in range(0, tam_matrizF):
+			for c in range(0, 1):
+				matriz_rF[r, c] = matriz_rF1[r, c] + matriz_rF2[r, c]
+		print(matriz_rF)
+	#matriz_rF = numpy.zeros((tam_matriz,1))
+	print("Con origen en la posición: "+str(position_origin_final) + " con dato: " + str(matriz_rF[position_origin_final-1,0]))
 
-	graficar(matriz_r, position_origin_final, 1)
+	graficar(matriz_rF, position_origin_final, 1)
