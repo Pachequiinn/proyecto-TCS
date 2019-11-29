@@ -93,4 +93,4 @@ def convolucion_periodica(sh,osh,sg,osg):
 	print(matriz_r)
 	print("Con origen en la posición: "+str(position_origin_final) + "con dato: " + str(matriz_r[position_origin_final-1,0]))
 
-	graficar(matriz_r, position_origin_final)
+	graficar(matriz_r, position_origin_final, 1)
