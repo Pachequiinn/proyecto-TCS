@@ -42,26 +42,37 @@ def convolucion_finita(sh,osh,sg,osg):
 		for col in range(0,tam_matriz):
 			for fil in range(0,tam_matriz):
 				if fil < tam_muestras_h and col == 0:
-					matriz_a[fil,col] = muestras_signal_h[fil]
+					temp_fraccion = muestras_signal_h[fil].split("/")
+					print("Temporal 1")
+					print(temp_fraccion)
+					if len(temp_fraccion) == 2:
+						matriz_a[fil,col] = float(temp_fraccion[0])/float(temp_fraccion[1])
+					else:
+						matriz_a[fil,col] = float(muestras_signal_h[fil])
 				elif fil > tam_muestras_h and col == 0:
 					matriz_a[fil,col] = 0
 				elif col > 0 and fil == 0:
-					matriz_a[fil,col] = matriz_a[tam_matriz-1,col-1]
+
+					matriz_a[fil,col] = float(matriz_a[tam_matriz-1,col-1])
 				elif col > 0 and fil > 0:
 					matriz_a[fil,col] = matriz_a[fil-1 ,col-1]
 		for col in range(0,1):
 			for fil in range(0,tam_matriz):
 				if fil < tam_muestras_g and col == 0:
-					matriz_b[fil,col] = muestras_signal_g[fil]
+					temp_fraccion = muestras_signal_g[fil].split("/")
+					print("Temporal 2")
+					print(temp_fraccion)
+					if len(temp_fraccion) == 2:
+						matriz_b[fil,col] = float(temp_fraccion[0])/float(temp_fraccion[1])
+					else:
+						matriz_b[fil,col] = muestras_signal_g[fil]
 				elif fil > tam_muestras_g and col == 0:
 					matriz_b[fil,col] = 0
-		array_res = []
 		# multiplicacion de matrices
 		for r in range(0,tam_matriz):
 			for c in range(0,1):
 				for k in range(0,tam_matriz):
-					matriz_r[r,c] += matriz_a[r,k] *  matriz_b[k,c]
-					array_res.append(matriz_a[r,k] *  matriz_b[k,c])
+					matriz_r[r,c] += float(matriz_a[r,k]) *  float(matriz_b[k,c])
 		print("h(x)*g(x)= ")
 		# print(array_res)
 	else:
@@ -69,28 +80,39 @@ def convolucion_finita(sh,osh,sg,osg):
 		for col in range(0,tam_matriz):
 			for fil in range(0,tam_matriz):
 				if fil < tam_muestras_g and col == 0:
-					matriz_a[fil,col] = muestras_signal_g[fil]
+					temp_fraccion = muestras_signal_g[fil].split("/")
+					print("Temporal 1")
+					print(temp_fraccion)
+					if len(temp_fraccion) == 2:
+						matriz_a[fil,col] = float(temp_fraccion[0])/float(temp_fraccion[1])
+					else:
+						matriz_a[fil,col] = float(muestras_signal_g[fil])
 				elif fil > tam_muestras_g and col == 0:
 					matriz_a[fil,col] = 0
 				elif col > 0 and fil == 0:
-					matriz_a[fil,col] = matriz_a[tam_matriz-1,col-1]
+					matriz_a[fil,col] = float(matriz_a[tam_matriz-1,col-1])
 				elif col > 0 and fil > 0:
-					matriz_a[fil,col] = matriz_a[fil-1 ,col-1]
+					matriz_a[fil,col] = float(matriz_a[fil-1 ,col-1])
 		for col in range(0,1):
 			for fil in range(0,tam_matriz):
 				if fil < tam_muestras_h and col == 0:
-					matriz_b[fil,col] = muestras_signal_h[fil]
+					temp_fraccion = muestras_signal_h[fil].split("/")
+					print("Temporal 1")
+					print(temp_fraccion)
+					if len(temp_fraccion) == 2:
+						matriz_b[fil,col] = float(temp_fraccion[0])/float(temp_fraccion[1])
+					else:
+						matriz_b[fil,col] = float(muestras_signal_h[fil])
 				elif fil > tam_muestras_h and col == 0:
 					matriz_b[fil,col] = 0
-		array_res = []
 		# multiplicacion de matrices
 		for r in range(0,tam_matriz):
 			for c in range(0,1):
 				for k in range(0,tam_matriz):
-					matriz_r[r,c] += matriz_b[r,k] *  matriz_a[k,c]
+					matriz_r[r,c] += float(matriz_a[r,k]) *  float(matriz_b[k,c])
 		print("g(x)*h(x)= ")
 
 	print(matriz_r)
 	print("Con origen en la posición: "+str(position_origin_final) + "con dato: " + str(matriz_r[position_origin_final-1,0]))
 
-	graficar(matriz_r, position_origin_final)
+	graficar(matriz_r, position_origin_final, muestras_signal_h, origin_signal_h, muestras_signal_g, origin_signal_g, tipo=0)

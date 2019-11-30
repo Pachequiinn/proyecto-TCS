@@ -1,5 +1,3 @@
-# -*- coding:utf-8 -*-
-
 import numpy
 import matplotlib.pyplot as plt
 import sys
@@ -125,4 +123,4 @@ def convolucion_periodica(sh,osh,sg,osg):
 	#matriz_rF = numpy.zeros((tam_matriz,1))
 	print("Con origen en la posición: "+str(position_origin_final) + " con dato: " + str(matriz_rF[position_origin_final-1,0]))
 
-	graficar(matriz_rF, position_origin_final, 1)
+	graficar(matriz_rF, position_origin_final, muestras_signal_h, origin_signal_h, muestras_signal_g, origin_signal_g, 1)

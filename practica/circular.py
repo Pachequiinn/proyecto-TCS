@@ -146,4 +146,5 @@ def convolucion_circular(sh,osh,sg,osg):
 
 	print(position_origin_final)
 
-	graficar(op_2_r, position_origin_final, 2)
+	graficar(op_2_r, position_origin_final, muestras_signal_h, origin_signal_h, muestras_signal_g, origin_signal_g, tipo=2)
+

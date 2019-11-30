@@ -1,35 +1,116 @@
 import numpy
 import matplotlib.pyplot as plt
 
-def graficar(matriz_r, origen, tipo=0):
+def graficar(matriz_r, origen, h, origenH, g, origenG, tipo=0):
 
-	if tipo < 0:
+	print("H: ", type(h[0]), " Origen h", type(origenH))
+	print("Tipo matriz: ", type(matriz_r))
+
+	if(tipo == 2):
+		tamanio = len(matriz_r)
+	else:
 		tamanio = matriz_r.shape[0]
+
+	
+
+	
+	hLin = numpy.zeros(len(h))
+	gLin = numpy.zeros(len(g))
+	for i in range(len(h)):
+		hLin[i] += float(h[i])
+
+	for i in range(len(g)):
+		gLin[i] += float(g[i])		
+	
+	inicio = -1*origen+1
+	final = inicio + tamanio - 1
+
+
+	if(tipo == 1 or tipo == 2):
+
+		if(tipo == 2):
+			tamanio = len(matriz_r)
+			convolucion = matriz_r
+			final = len(matriz_r) - 1
+
+			k = 0
+			convolucion = numpy.zeros(3*tamanio)
+			print("Tamanio, ",len(convolucion))
+			for i in range(3):
+				for j in range(tamanio):
+					convolucion[k] += matriz_r[j]
+					k+=1
+			x = numpy.linspace(0, 3*tamanio-1, 3*tamanio, endpoint=True)
+			print("De ",0," a ", tamanio*3)			
+
+		else:
+			k = 0
+			convolucion = numpy.zeros(3*tamanio)
+			print("Tamanio, ",len(convolucion))
+			for i in range(3):
+				for j in range(tamanio):
+					convolucion[k] += matriz_r[j][0]
+					k+=1
+			x = numpy.linspace(0-origen, 3*tamanio-1-origen, 3*tamanio, endpoint=True)
+			print("De ",0," a ", tamanio*3)
+	else:
 		convolucion = numpy.zeros(tamanio)
+		x = numpy.linspace(inicio, final, tamanio, endpoint=True)
 		for i in range(tamanio):
 			convolucion[i] += matriz_r[i][0]
-	else:
-		tamanio = len(matriz_r)
-		convolucion = matriz_r
 
-	print(convolucion)
-	inicio = -1*origen+1
-	if tipo < 0:
-		final = inicio + matriz_r.shape[0] - 1
-	else:
-		final = len(matriz_r) - 1
-	print("Inicio: ",inicio, " Final: ",final)
+		print("Tipo: ",type(convolucion))		
 
-	x = numpy.linspace(inicio, final, tamanio, endpoint=True)
+
+
+	#if tipo < 0:
+	#	tamanio = matriz_r.shape[0]
+	#	convolucion = numpy.zeros(tamanio)
+	#	for i in range(tamanio):
+	#		convolucion[i] += matriz_r[i][0]
+	#else:
+	#	tamanio = len(matriz_r)
+	#	convolucion = matriz_r
+
+	#print(convolucion)
+	#inicio = -1*origen+1
+	#if tipo < 0:
+	#	final = inicio + matriz_r.shape[0] - 1
+	#else:
+	#	final = len(matriz_r) - 1
+	#print("Inicio: ",inicio, " Final: ",final)
+
+
+	print(hLin)
+	inicioH = -1*origenH+1
+	finalH = inicioH + len(h) - 1
+	print("Inicio: ",inicioH, " Final: ",finalH)
+
+	print(gLin)
+	inicioG = -1*origenG+1
+	finalG = inicioG + len(g) - 1
+	print("Inicio: ",inicioG, " Final: ",finalG)
+
+	hX = numpy.linspace(inicioH, finalH, len(h), endpoint=True)
+	gX = numpy.linspace(inicioG, finalG, len(g), endpoint=True)
+
+	fig, (senialesOriginales, convoGrafica) = plt.subplots(2)
+
+	senialesOriginales.grid(True)
+	convoGrafica.grid(True)
 
 	if(tipo==0):
-		plt.title("Convolución finita")
+		convoGrafica.set_title("Convolución finita")
 	elif(tipo==1):
-		plt.title("Convolución periódica")
+		convoGrafica.set_title("Convolución periódica")
 	else:
-		plt.title("Convolución circular")
+		convoGrafica.set_title("Convolución circular")
 
-	plt.grid(True)
+	senialesOriginales.stem(hX, hLin, 'r', markerfmt='ro')
+	senialesOriginales.stem(gX, gLin, 'b', markerfmt='bo')
+	senialesOriginales.set_title('Funciones originales')
+	convoGrafica.stem(x, convolucion, 'g', markerfmt='go')
 
-	plt.stem(x, convolucion)
+	
+	
 	plt.show()
