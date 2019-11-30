@@ -33,7 +33,6 @@ def convolucion_periodica(sh,osh,sg,osg):
 	for i in range(0, tam_muestras_g):
 		if i < origin_signal_g-1:
 			position_origin_final += 1
-
 	# Llenado de matrices
 	if tam_muestras_h >= tam_muestras_g:
 		print("Se realizara la convolución de h(x)*g(x)")
@@ -55,13 +54,13 @@ def convolucion_periodica(sh,osh,sg,osg):
 					matriz_b[fil,col] = 0
 		array_res = []
 		# multiplicacion de matrices
-		for r in range(0,tam_matriz):
-			for c in range(0,1):
-				for k in range(0,tam_matriz):
+		for r in range(0,tam_matriz):									#elementos en la matriz prefinal
+			for c in range(0,1):										#filas, de un elemento cada una
+				for k in range(0,tam_matriz):							#elementos en la matriz prefinal
 					matriz_r[r,c] += matriz_a[r,k] *  matriz_b[k,c]
 					array_res.append(matriz_a[r,k] *  matriz_b[k,c])
 		print("h(x)*g(x)= ")
-		# print(array_res)
+		#print(array_res)
 	else:
 		print("Se realizara la convolución de g(x)*h(x)")
 		for col in range(0,tam_matriz):
@@ -82,45 +81,52 @@ def convolucion_periodica(sh,osh,sg,osg):
 					matriz_b[fil,col] = 0
 		array_res = []
 		# multiplicacion de matrices
-		for r in range(0,tam_matriz):
-			for c in range(0,1):
+		for r in range(0,tam_matriz):								
+			for c in range(0,1):									
 				for k in range(0,tam_matriz):
 					matriz_r[r,c] += matriz_b[r,k] *  matriz_a[k,c]
 		print("g(x)*h(x)= ")
-	#print(matriz_r)
+	print(matriz_r)
 
 	#Matriz de periodicidad
-	if tam_matriz%2 == 0:	#par
-		tam_matrizF = int(tam_matriz/2)
-		matriz_rF1 = numpy.zeros((tam_matrizF,1))
-		for r in range(0, tam_matrizF):
-			for c in range(0, 1):
-				matriz_rF1[r, c] = matriz_r[r, c]	
-		matriz_rF2 = numpy.zeros((tam_matrizF,1))
-		for r in range(0, tam_matrizF):
-			for c in range(0, 1):
-				matriz_rF2[r, c] = matriz_r[r + tam_matrizF, c]
-		matriz_rF = numpy.zeros((tam_matrizF,1))
-		for r in range(0, tam_matrizF):
-			for c in range(0, 1):
-				matriz_rF[r, c] = matriz_rF1[r, c] + matriz_rF2[r, c]
-		print(matriz_rF)
-	else:
-		tam_matrizF = int((tam_matriz+1)/2)
-		matriz_rF1 = numpy.zeros((tam_matrizF,1))
-		for r in range(0, tam_matrizF):
-			for c in range(0, 1):
-				matriz_rF1[r, c] = matriz_r[r, c]
-		matriz_rF2 = numpy.zeros((tam_matrizF,1))
-		for r in range(0, tam_matrizF-1):
-			for c in range(0, 1):
-				matriz_rF2[r, c] = matriz_r[r + tam_matrizF, c]
-		matriz_rF = numpy.zeros((tam_matrizF,1))
-		for r in range(0, tam_matrizF):
-			for c in range(0, 1):
-				matriz_rF[r, c] = matriz_rF1[r, c] + matriz_rF2[r, c]
-		print(matriz_rF)
-	#matriz_rF = numpy.zeros((tam_matriz,1))
-	print("Con origen en la posición: "+str(position_origin_final) + " con dato: " + str(matriz_rF[position_origin_final-1,0]))
 
-	graficar(matriz_rF, position_origin_final, muestras_signal_h, origin_signal_h, muestras_signal_g, origin_signal_g, 1)
+	tam_matrizrF1 = len(matriz_r) 	#cantidad de elementos en el periodo
+	while tam_matrizrF1%tam_muestras_g != 0:	#revisa que el tamaño del perdiodo entre en partes iguales 
+		tam_matrizrF1+=1
+
+	matriz_rF1 = numpy.zeros((tam_matrizrF1,1))	
+	for r in range(0, len(matriz_r)):	#agrega ceros de ser necesario para la separacion de tam_muestras_g
+				for c in range(0, 1):
+					matriz_rF1[r, c] = matriz_r[r, c]
+
+	array_rF = []
+	for r in range(0, len(matriz_rF1)):	
+				for c in range(0, 1):
+					array_rF.append(matriz_rF1[r,c])
+
+	divs = int(tam_matrizrF1/tam_muestras_g)
+	matriz_rF = numpy.zeros((divs,1))
+	array_F = []
+	cont = 0
+	while divs >= (cont+1):	#operaciones
+		aux = 0
+		for r in range(cont,len(array_rF),tam_muestras_g):
+			print(r)
+			aux += array_rF[r]
+		array_F.append(aux)
+		cont +=1
+
+	matriz_F = numpy.zeros((tam_muestras_g,1))	#solo toma los valores necesarios 
+	for r in range(0, len(matriz_F)):	
+				for c in range(0, 1):
+					matriz_F[r, c] = array_F[r]
+
+	print(matriz_F)
+	origen = position_origin_final
+	while  origen > len(matriz_F):
+		origen -=len(matriz_F)
+
+	print("Con origen en la posición: "+str(origen))
+	print("Con origen en la posición: "+str(origen) + " con dato: " + str(matriz_F[origen-1,0]))
+
+	graficar(matriz_F, position_origin_final, muestras_signal_h, origin_signal_h, muestras_signal_g, origin_signal_g, 1)
