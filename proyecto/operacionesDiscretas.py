@@ -1,8 +1,8 @@
 import numpy as np
 from graficar import graficar
 
-def espejo(signal, signal_o):
-    signal_arr = np.array([1,-1,0,0.5,4,3,7])
+def espejo(signal_arr, signal_o):
+    #signal_arr = np.array([1,-1,0,0.5,4,3,7])
     signal_origin = 4
     signal_reflejada = np.zeros(len(signal_arr))
     reflejada_origin = len(signal_arr)-signal_origin+1
@@ -17,8 +17,8 @@ def espejo(signal, signal_o):
 
     graficar(signal_reflejada, reflejada_origin, signal_arr, signal_origin)
 
-def amplificacion(signal, k):
-    signal_arr = np.array([1,-1,0,0.5,4,3,7])
+def amplificacion(signal_arr, k):
+    #signal_arr = np.array([1,-1,0,0.5,4,3,7])
     signal_origin = 5
     signal_amp = np.zeros(len(signal_arr))
     amplificada_origin = signal_origin
@@ -33,9 +33,9 @@ def amplificacion(signal, k):
 
     graficar(signal_amp, amplificada_origin, signal_arr, signal_origin)
 
-def desplazamiento(signal, signal_o, n0):
+def desplazamiento(signal_arr, signal_o, n0):
 
-    signal_arr = np.array([1,-1,0,0.5,4,3,7])
+    #signal_arr = np.array([1,-1,0,0.5,4,3,7])
 
     original_copy = np.array(signal_arr, copy = True)
 
@@ -65,9 +65,9 @@ def desplazamiento(signal, signal_o, n0):
     graficar(signal_arr, new_origin, original_copy, signal_o)
 
 
-def diezmacion(signal, signal_o, k):
+def diezmacion(signal_arr, signal_o, k):
 
-    signal_arr = np.array([2,5,3,0,7,9,-1,6,7,7,1])
+    #signal_arr = np.array([2,5,3,0,7,9,-1,6,7,7,1])
     original_copy = np.array(signal_arr, copy = True)
     origina_o = signal_o
 
@@ -108,9 +108,9 @@ def diezmacion(signal, signal_o, k):
 
     graficar(signal_arr, signal_o, original_copy, origina_o)
 
-def intepolacionCero(signal, signal_o, k):
+def intepolacionCero(signal_arr, signal_o, k):
 
-    signal_arr = np.array([1,2,3,4,5,6,7,8])
+    #signal_arr = np.array([1,2,3,4,5,6,7,8])
     size_original = len(signal_arr)
 
     if(signal_o == 1):
@@ -143,9 +143,9 @@ def intepolacionCero(signal, signal_o, k):
     
     graficar(inter_signal, new_o, signal_arr, signal_o)
 
-def intepolacionEscalon(signal, signal_o, k):
+def intepolacionEscalon(signal_arr, signal_o, k):
 
-    signal_arr = np.array([1,0,-1,2,3,0,8,0])
+    #signal_arr = np.array([1,0,-1,2,3,0,8,0])
     size_original = len(signal_arr)
 
     if(signal_o == 1):
@@ -179,9 +179,9 @@ def intepolacionEscalon(signal, signal_o, k):
     
     graficar(inter_signal, new_o, signal_arr, signal_o)    
 
-def intepolacionLineal(signal, signal_o, k):
+def intepolacionLineal(signal_arr, signal_o, k):
 
-    signal_arr = np.array([1,0,-1,2,3,0,8,0])
+    #signal_arr = np.array([1,0,-1,2,3,0,8,0])
     size_original = len(signal_arr)
 
     if(signal_o == 1):
@@ -221,15 +221,17 @@ def intepolacionLineal(signal, signal_o, k):
     
     graficar(inter_signal, new_o, signal_arr, signal_o)
 
-#espejo(0, 0)
+signal_arr = np.array([1,-1,0,0.5,4,3,7])
+
+#espejo(signal_arr, 0)
 #print("")
-#amplificacion(0, 2)
+#amplificacion(signal_arr, 2)
 #print("")
 #desplazamientoV = 0
 #while(desplazamientoV != 100):
 #    desplazamientoV = int(input("Ingresa el desplazamiento: "))
-#    desplazamiento(0, 3, desplazamientoV)
-diezmacion(1, 4, 8)
-intepolacionCero(1, 8, 3)
-intepolacionEscalon(1, 8, 2)
-intepolacionLineal(1, 8, 4)
+#    desplazamiento(signal_arr, 3, desplazamientoV)
+diezmacion(signal_arr, 4, 8)
+intepolacionCero(signal_arr, 8, 3)
+intepolacionEscalon(signal_arr, 8, 2)
+intepolacionLineal(signal_arr, 8, 4)
