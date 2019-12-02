@@ -28,7 +28,13 @@ def graficar(matriz_r, origen, h, origenH, g, origenG, tipo=0):
 
 	if(tipo == 1 or tipo == 2):
 
+<<<<<<< HEAD
+		print("Tipo != 0")
 		if(tipo == 2):
+			print("Tipo 2")
+=======
+		if(tipo == 2):
+>>>>>>> f8d4571ef81c0a9a537e1c9bb63b055745024531
 			tamanio = len(matriz_r)
 			convolucion = matriz_r
 			final = len(matriz_r) - 1
@@ -40,6 +46,18 @@ def graficar(matriz_r, origen, h, origenH, g, origenG, tipo=0):
 				for j in range(tamanio):
 					convolucion[k] += matriz_r[j]
 					k+=1
+<<<<<<< HEAD
+			x = numpy.linspace(0-origen+1, 3*tamanio-origen, 3*tamanio, endpoint=True)
+			print("----------------------------------------")
+			print("De ",0-origen+1," a ", 3*tamanio-origen-1)
+
+		else:
+			print("Tipo 1")
+			k = 0
+			convolucion = numpy.zeros(3*tamanio)
+			print("Tamanio, ",len(convolucion))
+
+=======
 			x = numpy.linspace(0, 3*tamanio-1, 3*tamanio, endpoint=True)
 			print("De ",0," a ", tamanio*3)
 
@@ -47,12 +65,21 @@ def graficar(matriz_r, origen, h, origenH, g, origenG, tipo=0):
 			k = 0
 			convolucion = numpy.zeros(3*tamanio)
 			print("Tamanio, ",len(convolucion))
+>>>>>>> f8d4571ef81c0a9a537e1c9bb63b055745024531
 			for i in range(3):
 				for j in range(tamanio):
 					convolucion[k] += matriz_r[j][0]
 					k+=1
+<<<<<<< HEAD
+			x = numpy.linspace(0-origen+1, 3*tamanio-origen, 3*tamanio, endpoint=True)
+			print("De ",0," a ", tamanio*3)
+			print("------------------")
+			print("Valores: ", convolucion, " Origen: ", origen)
+			print("------------------")
+=======
 			x = numpy.linspace(0-origen, 3*tamanio-1-origen, 3*tamanio, endpoint=True)
 			print("De ",0," a ", tamanio*3)
+>>>>>>> f8d4571ef81c0a9a537e1c9bb63b055745024531
 	else:
 		convolucion = numpy.zeros(tamanio)
 		x = numpy.linspace(inicio, final, tamanio, endpoint=True)

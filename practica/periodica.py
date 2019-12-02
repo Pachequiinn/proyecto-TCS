@@ -133,7 +133,16 @@ def convolucion_periodica(sh,osh,sg,osg):
 	#print("Con origen en la posición: "+str(origen))
 	print("Con origen en la posición: "+str(origen) + " con dato: " + str(matriz_F[origen-1,0]))
 
+<<<<<<< HEAD
+	graficar(matriz_F, origen, muestras_signal_h, origin_signal_h, muestras_signal_g, origin_signal_g, tipo=1)
+
+# 3,5,-1,.5,4,0,11
+#2
+# -1,0,2,5
+#4
+=======
 	graficar(matriz_F, origen, muestras_signal_h, origin_signal_h, muestras_signal_g, origin_signal_g, 1)
 
 # 3,5,-1,.5,4,0,11
 # -1,0,2,5
+>>>>>>> f8d4571ef81c0a9a537e1c9bb63b055745024531
