@@ -87,6 +87,7 @@ def convolucion_periodica(sh,osh,sg,osg):
 					matriz_r[r,c] += matriz_b[r,k] *  matriz_a[k,c]
 		print("g(x)*h(x)= ")
 	print(matriz_r)
+	#print("l="+str(len(matriz_r)))
 
 	#Matriz de periodicidad
 
@@ -105,27 +106,34 @@ def convolucion_periodica(sh,osh,sg,osg):
 					array_rF.append(matriz_rF1[r,c])
 
 	divs = int(tam_matrizrF1/tam_muestras_g)
+	#print("divs="+str(divs))
 	matriz_rF = numpy.zeros((divs,1))
 	array_F = []
 	cont = 0
-	while divs >= (cont+1):	#operaciones
+	while divs >= (cont):	#operaciones
 		aux = 0
 		for r in range(cont,len(array_rF),tam_muestras_g):
-			print(r)
+			#print(r)
 			aux += array_rF[r]
 		array_F.append(aux)
 		cont +=1
+	#print("array")
+	#print(array_F)
 
 	matriz_F = numpy.zeros((tam_muestras_g,1))	#solo toma los valores necesarios 
 	for r in range(0, len(matriz_F)):	
 				for c in range(0, 1):
 					matriz_F[r, c] = array_F[r]
-
+	Print("secuencia resultante")				
 	print(matriz_F)
 	origen = position_origin_final
 	while  origen > len(matriz_F):
 		origen -=len(matriz_F)
 
+	#print("Con origen en la posición: "+str(origen))
 	print("Con origen en la posición: "+str(origen) + " con dato: " + str(matriz_F[origen-1,0]))
 
-	graficar(matriz_F, position_origin_final, muestras_signal_h, origin_signal_h, muestras_signal_g, origin_signal_g, 1)
+	graficar(matriz_F, origen, muestras_signal_h, origin_signal_h, muestras_signal_g, origin_signal_g, 1)
+
+# 3,5,-1,.5,4,0,11
+# -1,0,2,5
