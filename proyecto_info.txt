@@ -1,0 +1,12 @@
+Proyecto-Práctica
+
+Implementar las operaciones básicas a una señal de 
+entrada, de acuerdo al siguiente menú
+
+1)Amplificación/Atenuación
+2)Reflejo
+3)Desplazamiento
+4)Interpolación
+5)Diezmación
+6)Graficas Entrada/Salida
+7)Audio graficas Entrada/Salida max. 5 seg.
