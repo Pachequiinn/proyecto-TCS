@@ -11,17 +11,17 @@ def graficar(matriz_r, origen, h, origenH, g, origenG, tipo=0):
 	else:
 		tamanio = matriz_r.shape[0]
 
-	
 
-	
+
+
 	hLin = numpy.zeros(len(h))
 	gLin = numpy.zeros(len(g))
 	for i in range(len(h)):
 		hLin[i] += float(h[i])
 
 	for i in range(len(g)):
-		gLin[i] += float(g[i])		
-	
+		gLin[i] += float(g[i])
+
 	inicio = -1*origen+1
 	final = inicio + tamanio - 1
 
@@ -41,7 +41,7 @@ def graficar(matriz_r, origen, h, origenH, g, origenG, tipo=0):
 					convolucion[k] += matriz_r[j]
 					k+=1
 			x = numpy.linspace(0, 3*tamanio-1, 3*tamanio, endpoint=True)
-			print("De ",0," a ", tamanio*3)			
+			print("De ",0," a ", tamanio*3)
 
 		else:
 			k = 0
@@ -59,7 +59,7 @@ def graficar(matriz_r, origen, h, origenH, g, origenG, tipo=0):
 		for i in range(tamanio):
 			convolucion[i] += matriz_r[i][0]
 
-		print("Tipo: ",type(convolucion))		
+		print("Tipo: ",type(convolucion))
 
 
 
@@ -111,6 +111,6 @@ def graficar(matriz_r, origen, h, origenH, g, origenG, tipo=0):
 	senialesOriginales.set_title('Funciones originales')
 	convoGrafica.stem(x, convolucion, 'g', markerfmt='go')
 
-	
-	
+
+
 	plt.show()
