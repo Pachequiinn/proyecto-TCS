@@ -1,9 +1,9 @@
 import numpy as np
 from graficar import graficar
 
-def espejo(signal_arr, signal_o):
+def espejo(signal_arr, signal_origin):
     #signal_arr = np.array([1,-1,0,0.5,4,3,7])
-    signal_origin = 4
+    #signal_origin = 4
     signal_reflejada = np.zeros(len(signal_arr))
     reflejada_origin = len(signal_arr)-signal_origin+1
 
@@ -17,9 +17,9 @@ def espejo(signal_arr, signal_o):
 
     graficar(signal_reflejada, reflejada_origin, signal_arr, signal_origin)
 
-def amplificacion(signal_arr, k):
+def amplificacion(signal_arr, signal_origin, k):
     #signal_arr = np.array([1,-1,0,0.5,4,3,7])
-    signal_origin = 5
+    #signal_origin = 5
     signal_amp = np.zeros(len(signal_arr))
     amplificada_origin = signal_origin
 
@@ -108,7 +108,7 @@ def diezmacion(signal_arr, signal_o, k):
 
     graficar(signal_arr, signal_o, original_copy, origina_o)
 
-def intepolacionCero(signal_arr, signal_o, k):
+def interpolacionCero(signal_arr, signal_o, k):
 
     #signal_arr = np.array([1,2,3,4,5,6,7,8])
     size_original = len(signal_arr)
@@ -143,7 +143,7 @@ def intepolacionCero(signal_arr, signal_o, k):
     
     graficar(inter_signal, new_o, signal_arr, signal_o)
 
-def intepolacionEscalon(signal_arr, signal_o, k):
+def interpolacionEscalon(signal_arr, signal_o, k):
 
     #signal_arr = np.array([1,0,-1,2,3,0,8,0])
     size_original = len(signal_arr)
@@ -179,7 +179,7 @@ def intepolacionEscalon(signal_arr, signal_o, k):
     
     graficar(inter_signal, new_o, signal_arr, signal_o)    
 
-def intepolacionLineal(signal_arr, signal_o, k):
+def interpolacionLineal(signal_arr, signal_o, k):
 
     #signal_arr = np.array([1,0,-1,2,3,0,8,0])
     size_original = len(signal_arr)
@@ -221,7 +221,7 @@ def intepolacionLineal(signal_arr, signal_o, k):
     
     graficar(inter_signal, new_o, signal_arr, signal_o)
 
-signal_arr = np.array([1,-1,0,0.5,4,3,7])
+#signal_arr = np.array([1,-1,0,0.5,4,3,7])
 
 #espejo(signal_arr, 0)
 #print("")
@@ -231,7 +231,7 @@ signal_arr = np.array([1,-1,0,0.5,4,3,7])
 #while(desplazamientoV != 100):
 #    desplazamientoV = int(input("Ingresa el desplazamiento: "))
 #    desplazamiento(signal_arr, 3, desplazamientoV)
-diezmacion(signal_arr, 4, 8)
-intepolacionCero(signal_arr, 8, 3)
-intepolacionEscalon(signal_arr, 8, 2)
-intepolacionLineal(signal_arr, 8, 4)
+#diezmacion(signal_arr, 4, 8)
+#intepolacionCero(signal_arr, 8, 3)
+#intepolacionEscalon(signal_arr, 8, 2)
+#intepolacionLineal(signal_arr, 8, 4)
