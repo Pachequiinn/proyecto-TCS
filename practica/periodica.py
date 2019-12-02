@@ -124,7 +124,7 @@ def convolucion_periodica(sh,osh,sg,osg):
 	for r in range(0, len(matriz_F)):	
 				for c in range(0, 1):
 					matriz_F[r, c] = array_F[r]
-	Print("secuencia resultante")				
+	print("secuencia resultante")				
 	print(matriz_F)
 	origen = position_origin_final
 	while  origen > len(matriz_F):
