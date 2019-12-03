@@ -74,12 +74,12 @@ def convolucion_circular(sh,osh,sg,osg):
 				op_a.append(op_res[i])
 			else:
 				op_b.append(op_res[i])
-		for i in range(0,periodo_g):
+		for i in range(0,len(op_a)-len(op_b)):
 			op_b.append(0.0)
 		# Realiza la suma
 		print(op_a)
 		print(op_b)
-		for i in range(0,len(op_a)):
+		for i in range(0,periodo_h):
 			op_r.append(op_a[i] + op_b[i])
 		print(op_r)
 		print("h(x)*g(x)= ")
@@ -114,12 +114,12 @@ def convolucion_circular(sh,osh,sg,osg):
 				op_a.append(op_res[i])
 			else:
 				op_b.append(op_res[i])
-		for i in range(0,periodo_h):
+		for i in range(0,len(op_a)-len(op_b)):
 			op_b.append(0.0)
 		# Realiza la suma
 		print(op_a)
 		print(op_b)
-		for i in range(0,len(op_a)):
+		for i in range(0,periodo_g):
 			op_r.append(op_a[i] + op_b[i])
 		print(op_r)
 		print("g(x)*h(x)= ")

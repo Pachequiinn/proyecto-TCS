@@ -119,6 +119,8 @@ def graficar(matriz_r, origen, h, origenH, g, origenG, tipo=0):
 	senialesOriginales.set_title('Funciones originales')
 	convoGrafica.stem(x, convolucion, 'g', markerfmt='go')
 
+	for i,j in zip(x, convolucion):
+		convoGrafica.annotate(str(j), xy=(i,j))
 
 
 	plt.show()
