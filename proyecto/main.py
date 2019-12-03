@@ -21,7 +21,7 @@ def leer_hX():
 
 def realizar_amplificacion():
     signal_arr, origen = leer_hX()
-    opeDis.amplificacion(signal_arr, origen, int(factorAmplificacion.get()))
+    opeDis.amplificacion(signal_arr, origen, float(factorAmplificacion.get()))
 
 def realiar_reflejo():
     signal_arr, origen = leer_hX()
